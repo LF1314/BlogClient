@@ -5,17 +5,40 @@
           <div class="write_blog_wraper w960">
               <el-card class="write_blog_card">
                      <el-row>
-                        <el-col :span='20'>
+                        <el-col :span='18' class="writeblogss">
                                  <el-form>
                                       <el-form-item
                                        label='标题'
                                       >
                                           <input class="myinput" type="text" placeholder="请输入标题">
+                                             <i>博文封面</i>
+                                             <el-upload
+                                                class="avatar-uploader fr"
+                                                action="https://upload-z1.qiniup.com"
+                                                :data="obj"
+                                                :on-success="handleAvatarSuccess"
+                                            >
+                                                <img v-if="formdata.corver" :src="formdata.corver" class="avatar">
+                                                <i v-else class="el-icon-plus avatar-uploader-icon"></i>
+                                            </el-upload>
                                       </el-form-item>
                                       <el-form-item
                                       label='分类'
-                                      >
-
+                                      > 
+                                            <el-select
+                                                v-model="formdata.category"
+                                                multiple
+                                                filterable
+                                                allow-create
+                                                default-first-option
+                                                placeholder="分类可自行添加其他分类">
+                                                <el-option
+                                                v-for="item in options5"
+                                                :key="item.value"
+                                                :label="item.label"
+                                                :value="item.value">
+                                                </el-option>
+                                            </el-select>
                                       </el-form-item>
                                       <el-form-item>
                                               <quill-editor
@@ -25,11 +48,17 @@
                                                 >
                                                 </quill-editor>
                                       </el-form-item>
-
+                                      <el-form-item class="fabuitem">
+                                          <el-button class="fabumybtn">
+                                              发布文章
+                                          </el-button>
+                                      </el-form-item>
                                  </el-form>
                         </el-col>
-                        <el-col :span='4'>
-
+                        <el-col :span='5'>
+                                <el-card class="newb_blog_list">
+                                           
+                                </el-card>
                         </el-col>
                     </el-row>
               </el-card>
@@ -54,16 +83,34 @@ import 'quill/dist/quill.bubble.css'
         {
             return{
                 token:'',
+                obj:{
+                    token:''
+                },
                  formdata:{
-                  content:'',
-                  contentext:''
+                    corver:'',
+                    title:'',
+                    creatime:'',
+                    content:'',
+                    contentext:'',
+                    category:[],
+                    author:''
                  },
+                   options5: [{
+                                value: 'HTML',
+                                label: 'HTML'
+                                }, {
+                                value: 'CSS',
+                                label: 'CSS'
+                                }, {
+                                value: 'JavaScript',
+                                label: 'JavaScript'
+                                }],
 
                 editorOption: {
                      modules: {
-                         ImageExtend: {  // 如果不作设置，即{}  则依然开启复制粘贴功能且以base64插入 
-                             name: 'file',  // 图片参数名
-                             size: 3,  // 可选参数 图片大小，单位为M，1M = 1024kb
+                         ImageExtend: { 
+                             name: 'file',  
+                             size: 3,
                              action: 'https://upload-z1.qiniup.com',  
                              response: (res) => {
                                  return res.url
@@ -71,10 +118,7 @@ import 'quill/dist/quill.bubble.css'
                              headers: (xhr) => {
                              }, 
                              change: (xhr, formData) => {
-                             // xhr.setRequestHeader('myHeader','myValue')
-                             // formData.append('token', 'myToken')
                               formData.append('token',this.token)
-                            
                              } 
                          },
                          toolbar: {  
@@ -92,31 +136,95 @@ import 'quill/dist/quill.bubble.css'
         },
         created(){
             axios.get("http://upload.yaojunrong.com/getToken")
-            .then(res => {this.token =res.data.data});
+            .then(res => {
+                this.token =res.data.data
+                this.obj.token =this.token
+            
+            });
+        },
+        methods:{
+             handleAvatarSuccess(file) {
+             this.formdata.corver = file.url;
+                   },
         }
     }
 </script>
 
 <style scoped lang='scss'>
+.writeblogss{
+  box-shadow: 0px -4px 2px rgba($color: #46493d, $alpha: .6);
+  margin: 10px;
+  padding: 10px;
+  border-bottom: 1px solid rgba($color: #46493d, $alpha: .4);
+}
 .write_blog_wraper{
     margin: 20px auto;
 }
 .write_blog_card{
-      
-      background-color: #231536;
-      border: none;
-     
+      background-color: #92929b;
+      border: none;  
 }
 .myinput{
-       background-color: #332547;
+       background-color: #413750;
        outline: none;
        border-radius: 6px;
-       display:block;
+       display:inline-block;
        height: 36px;
        color: #fff;
        width: 300px;
        border: none;
        padding-left: 10px; 
+       margin-right: 20px;
 }
-input::-webkit-input-placeholder{ color:rgb(194, 154, 154)}
+input::-webkit-input-placeholder{ color:rgb(241, 231, 231)}
+.quill-editor{
+    height: 800px;
+}
+.el-select {
+    /deep/ .el-input__inner
+    {
+     background-color: #413750;
+     border: none;
+    }
+   
+}
+.newb_blog_list{
+    background-color: #413750;
+    border: none;
+}
+
+  .avatar-uploader .el-upload:hover {
+     width: 90px;
+    border-color: #409EFF;
+  }
+  .avatar-uploader-icon {
+   border-radius: 6px;
+    border: 1px dashed #e6d4d4;
+    font-size: 28px;
+    color: #dae2ec;
+    width: 90px;
+    height: 90px;
+    line-height: 90px;
+    text-align: center;
+  }
+  .avatar {
+    width: 90px;
+    height: 90px;
+    display: block;
+  }
+.avatar-uploader{
+    display: inline-block;
+    margin-right: 120px;
+}
+.fabuitem{
+      box-shadow: -0px -3px 2px rgba($color: #5e6156, $alpha: .6);
+      overflow: hidden;
+      padding: 10px;
+}
+.fabumybtn{
+    width: 150px;
+   background-color: #413750;
+   color: #ddd;
+   border: none;
+}
 </style>

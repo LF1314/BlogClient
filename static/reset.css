@@ -364,3 +364,6 @@ a{
   text-decoration: none;
   color: #666;
 }
+.ql-container.ql-snow{
+  border: none;
+}

@@ -46,6 +46,12 @@ const router =  new Router({
           name:'readblog',
           meta:{index:5},
           component:()=>import('@views/readblog')
+        },
+        {
+          path:'center',
+          name:'center',
+          meta:'个人中心',
+          component:()=>import('@views/personcenter')
         }
       ]
     }

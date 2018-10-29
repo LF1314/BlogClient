@@ -16,7 +16,7 @@
                             <router-link to="/index/life">慢生活</router-link>
                         </el-tooltip>
                         <el-tooltip class="item" effect="dark" content="langue" placement="bottom">
-                            <router-link to="/index/langue">随言碎语</router-link>
+                            <router-link to="/index/langue">交流</router-link>
                         </el-tooltip>
                          <el-tooltip class="item" effect="dark" content="message" placement="bottom">
                             <router-link to="/index/liuyan">留言</router-link>
@@ -34,7 +34,7 @@
                                <i class="el-icon-arrow-down el-icon--right"></i>
                             </span>
                             <el-dropdown-menu slot="dropdown" class="xiala">
-                                <el-dropdown-item>个人中心</el-dropdown-item>
+                                <el-dropdown-item ><router-link to="/index/center">个人中心</router-link></el-dropdown-item>
                                 <el-dropdown-item @click.native="loginout">退出登陆</el-dropdown-item>
                             </el-dropdown-menu>
                  </el-dropdown>
@@ -70,7 +70,9 @@
                            this.$store.commit('CHANGEUSERINFO',null)
                        }
                    })
-            }
+            },
+    
+            
         }
     }
 </script>

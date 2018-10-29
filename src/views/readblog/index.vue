@@ -1,4 +1,4 @@
-//阅读文章列表
+//阅读博客
 <template>
     <div class="read_blog_wrpaer w960">
         <el-card class="read_blog_card" 
@@ -11,20 +11,23 @@
                 </div>
                 <el-row>
                     <el-col :span="4" class="author_wraper"> 
-                            <div class="auth_message" v-if="article.author">
+                            <div class="auth_message" v-if="author">
                                   <h4>作者</h4>
                                   <div class="authorimg">
-                                     <img :src="article.author.avatar" width="100%" alt="作者">
+                                     <img :src="author.avatar" width="100%" alt="作者">
                                   </div>
                                   <div class="authdetail">
-                                      <p>{{article.author.username}}</p>
-                                      <p>粉丝：{{article.author.follows.length}}</p>
-                                      <p>关注：{{article.author.fans.length}}</p>
-                                      <p>博文：{{article.author.blogs.length}}</p>
+                                      <p>{{author.username}}</p>
+                                      <p>粉丝：{{author.fans.length}}</p>
+                                      <p>关注：{{author.follows.length}}</p>
+                                      <p>博文：{{author.blogs.length}}</p>
                                   </div>
-                                  <div>
-                                      <el-button class="followbtn" @click="addfollows">
+                                  <div v-show="showgaunzu" >
+                                      <el-button v-if="state" class="followbtn" @click="addfollows">
                                           +关注
+                                      </el-button>
+                                      <el-button v-else class="followbtn" @click="delfollows">
+                                          取消关注
                                       </el-button>
                                   </div>
 
@@ -71,7 +74,6 @@
             element-loading-text="🙃拼命加载中😵"
             element-loading-spinner="el-icon-loading"
             element-loading-background="rgba(0, 0, 0, 0.8)"
-        
         >
                   <div slot="header">
                         评论
@@ -131,10 +133,13 @@
         name:'readblog',
         data(){
             return{
+             author:null,
+             showgaunzu:true,
              article:{},
              loading:false,
              loading2:false,
              logd:false,
+             state:true,
              comment:{
                     creatime:'',
                     content:'',
@@ -147,20 +152,71 @@
             }
         },
         methods:{
+            //判断用户是否已经关注此用户
+            panduan(id){
+                if(this.$store.state.userinfo){
+                     if( this.$store.state.userinfo.follows.length==0){
+                          this.state = true
+                     }
+                     this.$store.state.userinfo.follows.forEach(element => {
+                   if(element == id){
+                       this.state = false
+                   }else{
+                       this.state = true
+                   }
+              });
+                }else{
+                    this.state =true
+                }
+            },
             getblog(){
               this.loading =true
               let id =this.$route.query.id
               this.$axios.get('/blog/detail',{id:id}).then(res=>{
                 //   console.log(res)
                   this.article = res.data
+                  this.author = this.article.author
                   this.loading =false
+                  if(this.$store.state.userinfo){
+                     if(this.author._id == this.$store.state.userinfo._id){
+                      this.showgaunzu = false
+                  }
+                  }else{
+                      this.showgaunzu = true
+                  }
+                  this.panduan(this.author._id)
+                  this.getcommeents()
               })
             },
             addfollows(){
+                let id = this.author._id
                 if(this.$store.state.userinfo){
-                    
+                     this.$axios.post('/fan/add',{id:id}).then(res=>{
+                         if(res.code==200)
+                         {
+                             this.author = res.data
+                             this.$store.commit('CHANGEUSERINFO',res.user)
+                             this.panduan(id)
+                         }
+                     })
                 }else{
                     this.$message.info('您老还没登陆😜')
+                }
+            },
+            delfollows(){
+                 let id = this.author._id
+                if(this.$store.state.userinfo){
+                      this.$axios.post('/fan/del',{id:id}).then(res=>{
+                         if(res.code==200)
+                         {
+                             this.author = res.data
+                             this.$store.commit('CHANGEUSERINFO',res.user)
+                             this.panduan(id)
+                         }
+                     })
+                }else{
+                    this.panduan(id)
+                     this.$message.info('😱没登陆没法操作😗')
                 }
             },
             addcomments(){
@@ -203,12 +259,15 @@
                        this.loading2 = false
                    }
                 })
+            },
+            changereadnum(){
+                this.$axios.get('/blog/looknum',{id:this.$route.query.id}).then(res=>{
+                })
             }
         },
         created(){
             this.getblog()
-            this.getcommeents()
-
+            this.changereadnum()   
         }
     }
 </script>

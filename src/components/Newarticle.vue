@@ -56,7 +56,7 @@
        methods:{
            gethotarticle(){
                this.$axios.get('/blog/new').then(res=>{
-                   console.log(res)
+                //    console.log(res)
                    this.article = res.data
                })
            },

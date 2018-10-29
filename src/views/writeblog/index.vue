@@ -10,7 +10,7 @@
                                       <el-form-item
                                        label='标题'
                                       >
-                                          <input class="myinput" type="text" placeholder="请输入标题">
+                                          <input class="myinput" type="text" v-model="formdata.title" placeholder="请输入标题">
                                              <i>博文封面</i>
                                              <el-upload
                                                 class="avatar-uploader fr"
@@ -45,11 +45,12 @@
                                                 v-model="formdata.content"
                                                 ref="myQuillEditor"
                                                 :options="editorOption"
+                                                @change="onEditorChange($event)"
                                                 >
                                                 </quill-editor>
                                       </el-form-item>
                                       <el-form-item class="fabuitem">
-                                          <el-button class="fabumybtn">
+                                          <el-button class="fabumybtn" @click="addblog">
                                               发布文章
                                           </el-button>
                                       </el-form-item>
@@ -70,6 +71,7 @@ import axios from 'axios'
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
+import funcs from  '../../until/funcs.js'
   import {quillEditor, Quill} from 'vue-quill-editor'
   import {container, ImageExtend, QuillWatch} from 'quill-image-extend-module'
   Quill.register('modules/ImageExtend', ImageExtend)
@@ -93,14 +95,15 @@ import 'quill/dist/quill.bubble.css'
                     content:'',
                     contentext:'',
                     category:[],
-                    author:''
+                    author:'',
+                    linuxtime:''
                  },
                    options5: [{
-                                value: 'HTML',
-                                label: 'HTML'
+                                value: '工作',
+                                label: 'job'
                                 }, {
-                                value: 'CSS',
-                                label: 'CSS'
+                                value: '生活',
+                                label: 'life'
                                 }, {
                                 value: 'JavaScript',
                                 label: 'JavaScript'
@@ -146,6 +149,30 @@ import 'quill/dist/quill.bubble.css'
              handleAvatarSuccess(file) {
              this.formdata.corver = file.url;
                    },
+                    onEditorChange({ quill, html, text }) {
+                   this.formdata.contentext = text.substr(0,200)            
+      },
+             //发布文章
+             addblog(){
+               let data = +new Date()
+               this.formdata.linuxtime = data
+               this.formdata.creatime = funcs.changedata(data)
+               this.formdata.author = this.$store.state.userinfo.id
+               console.log(this.formdata)
+               if(this.formdata.content && this.formdata.title){
+                     this.$axios.post('/blog/add',this.formdata).then(res=>{
+                         if(res.code == 200){
+                             this.$message.success({message:res.msg})
+                             setTimeout(() => {
+                                 this.$router.push('/index/home')
+                             }, 500);
+                         }
+                     })
+               }else{
+                   this.$message.error('标题，内容不阔以为空')
+               }
+
+             }
         }
     }
 </script>

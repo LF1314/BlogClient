@@ -27,9 +27,22 @@
                            </el-card>
                      </div>
             </div>
+            <div class="body_inner w960">
+                   <el-row>
+                       <el-col :span="18" class="article_wrepr">
+                               <special></special>
+                               <newarticle></newarticle>
+                       </el-col>
+                       <el-col :span="4">
+
+                       </el-col>
+                   </el-row>
+            </div>
       </div>
 </template>
 <script>
+import special from '../../components/Newest'
+import newarticle from '../../components/Newarticle'
     export default
     {
            name:'homeindex',
@@ -37,6 +50,10 @@
             return{
               bannerlist:[]
             }
+        },
+        components:{
+               special,
+               newarticle
         },
         methods:{
             getbanner(){
@@ -53,6 +70,13 @@
 </script>
 
 <style scoped lang ='scss'>
+.body_inner{
+    margin: 0 auto;
+    .article_wrepr{
+        margin-top: 30px;
+     
+    }
+}
 .swiper_wraper{
     padding: 30px;
     .weiper_inner{

@@ -10,7 +10,7 @@
                             <router-link to="/index/home">首页</router-link>
                         </el-tooltip>
                         <el-tooltip class="item" effect="dark" content="aboutme" placement="bottom">
-                            <router-link to="/index/about">关于我</router-link>
+                            <router-link to="/index/about">博文</router-link>
                         </el-tooltip>
                         <el-tooltip class="item" effect="dark" content="life" placement="bottom">
                             <router-link to="/index/life">慢生活</router-link>
@@ -50,10 +50,15 @@
                 if(this.$store.state.userinfo){
                     this.$router.push('/index/write')
                 }else{
-                    this.$message.info('未登录不能写博文哦！先去登陆吧')
-                    setTimeout(() => {
-                         this.$router.push('/index/login')
-                    }, 1000); 
+                    if(this.$route.name == 'login'){
+                        this.$message.info('登陆才阔以写😚')
+                    }else{
+                          this.$message.info('未登录不能写博文哦！先去登陆吧😋')
+                        setTimeout(() => {
+                            this.$router.push('/index/login')
+                        }, 2000); 
+                    }
+                     
                 }
             },
             //退出登录

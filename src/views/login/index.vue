@@ -57,6 +57,9 @@
                             if(res.code == 200){
                                 this.$message.success(res.msg)
                                 this.$store.commit('CHANGEUSERINFO',res.data)
+                                setTimeout(()=>{
+                                    this.$router.push('/index/home')
+                                },600)
                             }else{
                                 this.$message.error(res.msg)
                             }

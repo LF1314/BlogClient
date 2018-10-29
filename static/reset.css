@@ -346,6 +346,7 @@ template {
 }
 .w960{
   width: 960px;
+  margin: 0 auto;
 }
 
 .fl{
@@ -366,4 +367,7 @@ a{
 }
 .ql-container.ql-snow{
   border: none;
+}
+li{
+  list-style: none;
 }

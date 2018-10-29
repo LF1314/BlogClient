@@ -10,7 +10,6 @@
                 label-position="left" 
                 label-width="60px"
                 class="el-froms"
-                
                 >
                     <el-form-item
                      label='头像'
@@ -56,9 +55,8 @@ import funcs from '../../until/funcs.js'
         name:'singup',
         data(){
             return{
-                 token: "",
                     obj: {
-                        token: ""
+                        token:""
                     },
                 userdata:{
                     username:'',
@@ -71,7 +69,7 @@ import funcs from '../../until/funcs.js'
         methods:{
          getToken() {
           axios.get("http://upload.yaojunrong.com/getToken").then(res => {
-        this.obj.token = res.data.data;
+                   this.obj.token = res.data.data;
       });
     },
       handleAvatarSuccess(file) {

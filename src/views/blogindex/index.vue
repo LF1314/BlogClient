@@ -4,7 +4,7 @@
              <Header></Header>
       </div>
      <div class="router_wraper">
-         <router-view></router-view>
+                <router-view></router-view> 
      </div>
 </div>
     
@@ -18,6 +18,12 @@
         components:{
             Header
         },
+        data() {
+            return{
+       
+            }
+        },
+ 
      
     }
 </script>
@@ -42,6 +48,10 @@
     background-size: 100%;
     overflow-y:scroll;
     background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
     
 }
+
+
 </style>

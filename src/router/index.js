@@ -1,10 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   routes: [
     {
       path: '/',
@@ -19,29 +20,45 @@ export default new Router({
         {
           path:'home',
           name:'home',
-          meta:'首页',
+          meta:{index:1},
           component:()=>import("@views/home")
         },
         {
           path:'write',
           name:'write',
-          meta:'写博客',
+          meta:{index:2},
           component:()=>import('@views/writeblog')
         },
         {
           path:'login',
           name:'login',
-          meta:'登陆',
+          meta:{index:3},
           component:()=>import('@views/login')
         },
         {
           path:'singup',
           name:'singup',
-          meta:'注册',
+          meta:{index:4},
           component:()=>import('@views/singup')
+        },
+        {
+          path:'blogdetail',
+          name:'readblog',
+          meta:{index:5},
+          component:()=>import('@views/readblog')
         }
       ]
     }
 
   ]
 })
+router.beforeEach((to,from,next)=>{
+  NProgress.start()
+   next()
+})
+
+router.afterEach((to,from)=>{
+  NProgress.done()
+})
+
+export default router

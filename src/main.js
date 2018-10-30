@@ -6,6 +6,8 @@ import router from './router'
 import ElementUI from 'element-ui';
 import 'normalize.css'
 import 'element-ui/lib/theme-chalk/index.css';
+import VueScroller from 'vue-scroller'
+Vue.use(VueScroller)
 import $axios from '../src/until/axios' 
 import store from '../vuex/store'
 Vue.use(ElementUI);

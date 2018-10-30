@@ -11,10 +11,12 @@ class xhr {
      static get(url,data, methods='get', config){
          return new Promise((resolve,rejects)=>{
              instace[methods](url,{params:data},config).then(res=>{
-                 if(res.code == 403){
-                     Message.error(res.msg)
-                     router.push('/index/login')
-                    store.commit('CHANGEUSERINFO',null)
+                 if(res.data.code == 403){
+                     Message.error(res.data.msg)
+                     store.commit('CHANGEUSERINFO',null)
+                     setTimeout(() => {
+                        router.push('/index/login')
+                     }, 800);
                  }
                  resolve(res.data)
              }).catch(err=>{
@@ -25,10 +27,12 @@ class xhr {
      static post(url,data,methods='post',config){
          return new Promise((resolve,rejects)=>{
              instace[methods](url,data,config).then(res=>{
-                if(res.code == 403){
-                    Message.error(res.msg)
-                    router.push('/index/login')
+                if(res.data.code == 403){
+                    Message.error(res.data.msg)
                     store.commit('CHANGEUSERINFO',null)
+                    setTimeout(() => {
+                        router.push('/index/login')
+                     }, 800);
                 }
                  resolve(res.data)
              }).catch(err=>{

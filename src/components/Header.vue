@@ -16,7 +16,7 @@
                             <router-link to="/index/life">慢生活</router-link>
                         </el-tooltip>
                         <el-tooltip class="item" effect="dark" content="langue" placement="bottom">
-                            <router-link to="/index/langue">交流</router-link>
+                            <router-link to="/index/chatroom">交流</router-link>
                         </el-tooltip>
                          <el-tooltip class="item" effect="dark" content="message" placement="bottom">
                             <router-link to="/index/liuyan">留言</router-link>

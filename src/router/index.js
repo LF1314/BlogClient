@@ -52,6 +52,12 @@ const router =  new Router({
           name:'center',
           meta:'个人中心',
           component:()=>import('@views/personcenter')
+        },
+        {
+          path:"chatroom",
+          name:'chatroom',
+          meta:"交友",
+          component:()=>import('@views/chatroom')
         }
       ]
     }

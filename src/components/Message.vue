@@ -27,8 +27,6 @@
                             </div>
                        </div>
                  </li>
-            
-             
              </ul>
             </scroller>
     </div>
@@ -52,11 +50,9 @@
               this.meslist.push(val)
               console.log(this.meslist)
               let height = this.$refs.scroll
-             let he =this.$refs.scollui.clientHeight+120
-             
+              let he =this.$refs.scollui.clientHeight+120  
               this.$refs.scroll.scrollBy(0,he,false)
-              }
-             
+              }  
           }
        },
         data(){
@@ -76,8 +72,7 @@
               this.meslist = chatlist.data
             }
             ,
-            refresh(){
-                 
+            refresh(){        
             }
         },
         created(){
@@ -87,7 +82,8 @@
             }else{
                 this.userinfo = this.$store.state.userinfo
             }
-        }
+        },
+  
     }
 </script>
 

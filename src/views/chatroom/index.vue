@@ -62,7 +62,9 @@
       </div>
  </template>
  <script>
- import melist from '../../components/Message'
+  import melist from '../../components/Message'
+  import io  from 'socket.io-client'
+
      export default
      {
          name:"chatroom",
@@ -86,8 +88,12 @@
            async addchats(){
                 this.fordata.to='word'
                  if(this.fordata.content){
-                     let data= await this.$axios.post('/chat/add',this.fordata)
-                     this.obj = data.data
+                   let data= await this.$axios.post('/chat/add',this.fordata)
+                    this.obj = data.data     
+                         this.socket.emit('chat','我发送消息了')
+                         this.socket.on('chat',(data)=>{
+                              console.log(data) 
+                          })
                      this.fordata.content =''
                      if(data.code!=200){
                           this.$message.error('server error')
@@ -96,6 +102,11 @@
                      this.$message.info('内容不可以为空')
                  }
              }
+         }
+         ,
+         created(){
+         this.socket = io.connect('http://localhost:8060')
+     
          }
          
      }

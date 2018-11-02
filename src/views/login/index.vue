@@ -32,6 +32,7 @@
     </div>
 </template>
 <script>
+
     export default
     {
         name:'login',
@@ -57,6 +58,8 @@
                             if(res.code == 200){
                                 this.$message.success(res.msg)
                                 this.$store.commit('CHANGEUSERINFO',res.data)
+                                //登陆成功后建立socket.io链接
+                                
                                 setTimeout(()=>{
                                     this.$router.push('/index/home')
                                 },600)

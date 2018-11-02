@@ -11,7 +11,6 @@ Vue.use(VueScroller)
 import $axios from '../src/until/axios' 
 import store from '../vuex/store'
 Vue.use(ElementUI);
-
 Vue.config.productionTip = false
 Vue.prototype.$axios = $axios
 /* eslint-disable no-new */

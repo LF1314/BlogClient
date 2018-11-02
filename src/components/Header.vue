@@ -68,11 +68,12 @@
                        {
                            this.$message.info(res.msg)
                            this.$store.commit('CHANGEUSERINFO',null)
+                           setTimeout(() => {
+                               this.$router.push('/index/login')
+                           }, 500);
                        }
                    })
-            },
-    
-            
+            },   
         }
     }
 </script>
@@ -93,7 +94,6 @@
      position: absolute;
      right: 10px;
      top: 0;
-     
  }
  .header_inner{
      display: flex;

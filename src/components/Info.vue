@@ -1,5 +1,4 @@
 //个人信息
-
 <template>
     <div class="info_wrpaer">
          <div class="info_inner">

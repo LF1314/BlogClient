@@ -91,12 +91,13 @@
 .message_wraepr{
     width: 100%;
     height: 100%;
+    position: relative; 
     padding-bottom: 50px;
 
 }
-.scroller{
-    width: 100%;
-   position: relative; 
+
+._v-container{
+ position: relative;
 }
 
 .messae_item{

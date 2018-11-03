@@ -57,9 +57,7 @@
                                  </el-form>
                         </el-col>
                         <el-col :span='5'>
-                                <el-card class="newb_blog_list">
-                                           
-                                </el-card>
+                             
                         </el-col>
                     </el-row>
               </el-card>
@@ -157,7 +155,7 @@ import funcs from  '../../until/funcs.js'
                let data = +new Date()
                this.formdata.linuxtime = data
                this.formdata.creatime = funcs.changedata(data)
-               this.formdata.author = this.$store.state.userinfo.id
+               this.formdata.author = this.$store.state.userinfo._id
                console.log(this.formdata)
                if(this.formdata.content && this.formdata.title){
                      this.$axios.post('/blog/add',this.formdata).then(res=>{
@@ -181,7 +179,7 @@ import funcs from  '../../until/funcs.js'
 .writeblogss{
   box-shadow: 0px -4px 2px rgba($color: #46493d, $alpha: .6);
   margin: 10px;
-  padding: 10px;
+  padding: 20px;
   border-bottom: 1px solid rgba($color: #46493d, $alpha: .4);
 }
 .write_blog_wraper{

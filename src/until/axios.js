@@ -1,5 +1,5 @@
 import axios from 'axios'
-const baseURL ='/api'
+const baseURL = process.env.BASE_URL
 import {Message} from 'element-ui'
 import router from '../router/index'
 import store from '../../vuex/store'

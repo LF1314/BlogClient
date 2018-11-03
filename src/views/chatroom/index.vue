@@ -170,7 +170,6 @@
      filter: blur(10px);
      overflow: hidden; 
      border-radius: 10px;
-
  }
  .chat_roome_card{
      position: absolute;
@@ -179,8 +178,7 @@
      margin: 0 auto;
      border-radius: 10px;
      height: 450px;
-     .person_message{
-         
+     .person_message{  
      }
  }
  .message_content{

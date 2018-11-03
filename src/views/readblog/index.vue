@@ -224,7 +224,7 @@
                 let date = +new Date()
                 this.comment.linuxtime = date
                 this.comment.creatime = funcs.changedata(date)
-                this.comment.author = this.$store.state.userinfo.id
+                this.comment.author = this.$store.state.userinfo._id
                 this.comment.blog = this.article._id
                 if(this.comment.content){
                     this.$axios.post('/comment/add',this.comment).then(res=>{
@@ -233,7 +233,7 @@
                             this.logd = false
                             this.$message.success({message:res.msg})
                             this.comment.content = ''
-                            this.commentlist = [res.data,...this.commentlist]
+                            this.getcommeents()
                         }else if(res.code == 403){
                             this.$message.error(res.msg)
                             this.$store.commit('CHANGEUSERINFO',null)

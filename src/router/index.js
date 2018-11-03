@@ -59,6 +59,16 @@ const router =  new Router({
           meta:"交友",
           component:()=>import('@views/chatroom')
         }
+        ,{
+          path:'book',
+          name:'book',
+          component:()=>import('@views/book')
+        },
+        {
+          path:'bookdetail',
+          name:'bookdetail',
+          component:()=>import('@views/bookdetail')
+        }
       ]
     }
 

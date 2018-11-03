@@ -60,8 +60,10 @@
                                             <img :src="article.corver" width="100%" alt="">
                                      </div>
 
-                                     <div class="blog_content" v-html="article.content">
-
+                                     <div class="blog_content">
+                                               <vue-markdown
+                                                :source='article.contentext'
+                                               ></vue-markdown>
                                      </div>
                             </div>
 
@@ -127,6 +129,7 @@
     </div>
 </template>
 <script>
+import VueMarkdown from 'vue-markdown'
   import funcs from '../../until/funcs.js'
     export default
     {
@@ -150,6 +153,9 @@
              ,
              commentlist:[]
             }
+        },
+        components:{
+             VueMarkdown
         },
         methods:{
             //判断用户是否已经关注此用户
@@ -351,6 +357,17 @@
     box-shadow: 2px 2px 4px rgba($color: #363836, $alpha: 1.0);
     padding: 10px;
     box-sizing: border-box;
+}
+.blog_content{
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    color: #FFF;
+   /deep/ img{
+        width: 600px;;
+        
+    }
+    background-color: rgb(153, 140, 140);
 }
 .read_blog_wrpaer{
     margin: 0 auto;

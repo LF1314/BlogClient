@@ -13,7 +13,7 @@
                             <router-link to="/index/about">博文</router-link>
                         </el-tooltip>
                         <el-tooltip class="item" effect="dark" content="life" placement="bottom">
-                            <router-link to='/'>慢生活</router-link>
+                            <router-link to='/index/book'>书屋</router-link>
                         </el-tooltip>
                         <el-tooltip class="item" effect="dark" content="langue" placement="bottom">
                             <router-link to="/index/chatroom">交流</router-link>

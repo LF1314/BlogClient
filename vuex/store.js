@@ -8,12 +8,16 @@ import  createPersistedState  from 'vuex-persistedstate'
 Vue.use(vuex)
 
 const state ={
-    userinfo:null
+    userinfo:null,
+    bookurl:''
 }
 
 const mutations ={
     'CHANGEUSERINFO'(state,upload){
         state.userinfo = upload
+    },
+    'CHANGEBOOKURL'(state,upload){
+        state.bookurl = upload
     }
 }
 

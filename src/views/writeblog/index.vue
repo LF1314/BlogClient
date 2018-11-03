@@ -148,7 +148,7 @@ import funcs from  '../../until/funcs.js'
              this.formdata.corver = file.url;
                    },
                     onEditorChange({ quill, html, text }) {
-                   this.formdata.contentext = text.substr(0,200)            
+                   this.formdata.contentext = text         
       },
              //发布文章
              addblog(){
@@ -203,7 +203,7 @@ import funcs from  '../../until/funcs.js'
 }
 input::-webkit-input-placeholder{ color:rgb(241, 231, 231)}
 .quill-editor{
-    height: 800px;
+    height: 600px;
 }
 .el-select {
     /deep/ .el-input__inner
@@ -245,6 +245,7 @@ input::-webkit-input-placeholder{ color:rgb(241, 231, 231)}
       box-shadow: -0px -3px 2px rgba($color: #5e6156, $alpha: .6);
       overflow: hidden;
       padding: 10px;
+      box-sizing: border-box;
 }
 .fabumybtn{
     width: 150px;

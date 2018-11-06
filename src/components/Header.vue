@@ -6,11 +6,11 @@
                       <i>myblog</i>
                  </div>
                  <div class="Heaader_navbar">
-                         <el-tooltip class="item" effect="dark" content="home" placement="bottom">
+                        <el-tooltip class="item" effect="dark" content="home" placement="bottom">
                             <router-link to="/index/home">首页</router-link>
                         </el-tooltip>
-                        <el-tooltip class="item" effect="dark" content="aboutme" placement="bottom">
-                            <router-link to="/index/about">博文</router-link>
+                        <el-tooltip class="item" effect="dark" content="blog" placement="bottom">
+                            <router-link to="/index/bloglist">博文</router-link>
                         </el-tooltip>
                         <el-tooltip class="item" effect="dark" content="life" placement="bottom">
                             <router-link to='/index/book'>书屋</router-link>
@@ -27,8 +27,7 @@
                  </div>
             </div>
             <div class="haveuser" v-if="$store.state.userinfo">
-                      <el-dropdown>
-                            
+                      <el-dropdown>    
                             <span class="el-dropdown-link">
                                 <img :src="$store.state.userinfo.avatar" class="avaimg" alt="">
                                <i class="el-icon-arrow-down el-icon--right"></i>

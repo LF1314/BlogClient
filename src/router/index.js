@@ -68,6 +68,11 @@ const router =  new Router({
           path:'bookdetail',
           name:'bookdetail',
           component:()=>import('@views/bookdetail')
+        },
+        {
+          path:'bloglist',
+          name:'bloglist',
+          component:()=>import('@views/bloglist')
         }
       ]
     }

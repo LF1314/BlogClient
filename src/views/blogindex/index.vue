@@ -38,15 +38,12 @@
     z-index: 1000;
 }
 .index_wraper{
-    position: absolute;
-    top: 0px;
     width: 100%;
     padding-top: 70px;
+    min-height: 100vh;
     z-index: inherit;
-    bottom: 0;
     background-image: url('../../../static/img/bg.jpg');
-    background-size: 100%;
-    overflow-y:scroll;
+    background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;

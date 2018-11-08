@@ -1,5 +1,5 @@
 <template>
-    <div class="bloglist_wraper w960">
+    <div class="bloglist_wraper w960"  id="blog_list">
       <el-card class="bloglist_card">
           <div slot="header" class="headerss">
                  <div class="list_header">
@@ -16,50 +16,57 @@
                     </div>
                     <hot-blog></hot-blog>
               </el-col>
-              <el-col :span='16'
-                v-loading="loading"
-                element-loading-text="拼命加载中..."
-                element-loading-spinner="el-icon-loading"
-                element-loading-background="rgba(0, 0, 0, 0.8)"
+              <el-col
+                :span='16'   
               >
-                         <div class="list_header">
-                             文章列表
-                         </div>
-                         <div class="blog_list">
-                               <ul>
-                                   <li
-                                    class="blog_list_item"
-                                    v-for="(blog,index) in blogList" 
-                                    :key="index"
-                                    >
-                                    <div class="blog_img">
-                                          <img :src="blog.corver" alt="" width="100%">
-                                    </div>
-                                    <div class="blog_detail" v-if="blog.author">
-                                           <p class="blog_title" @click="jumptodetail(blog._id)">{{blog.title}}</p>
-                                            <p class="blog_other">
-                                                <span class="blog_type">
-                                                    前端开发
-                                                </span>
-                                                <span class="loook">
-                                                    {{blog.looknum}}
-                                                </span>
-                                                <img src="../../../static/img/yuedu.png" alt="">
+                    <div class="list_header">
+                        文章列表
+                    </div>
+                    <div class="blog_list">
+                        <ul>
+                            <li
+                            class="blog_list_item"
+                            v-for="(blog,index) in blogList" 
+                            :key="index"
+                            >
+                            <div class="blog_img">
+                                    <img :src="blog.corver" alt="" width="100%">
+                            </div>
+                            <div class="blog_detail" v-if="blog.author">
+                                    <p class="blog_title" @click="jumptodetail(blog._id)">{{blog.title}}</p>
+                                    <p class="blog_other">
+                                        <span class="blog_type">
+                                            前端开发
+                                        </span>
+                                        <span class="loook">
+                                            {{blog.looknum}}
+                                        </span>
+                                        <img src="../../../static/img/yuedu.png" alt="">
+                                        <span class="loook"
+                                            v-for="(cat,index) in blog.category" :key="index"
+                                        >
+                                        {{cat}}
+                                        </span>
+                                        <span class="loook fr">
+                                                {{blog.creatime}}                  
+                                        </span>
+                                    </p>
+                            </div>
+                            
+                            </li>
+                        </ul>
+                        <div v-if="loadingall" class="notdata" >
+                              😋到底了小伙子😋
+                        </div>
+                        <div
+                            v-loading="loading"
+                            element-loading-text="拼命加载中..."
+                            element-loading-spinner="el-icon-loading"
+                            element-loading-background="rgba(0, 0, 0, 0.8)"  
+                        >
 
-                                                <span class="loook"
-                                                 v-for="(cat,index) in blog.category" :key="index"
-                                                >
-                                                {{cat}}
-                                                </span>
-                                                <span class="loook fr">
-                                                        {{blog.creatime}}                  
-                                                </span>
-                                            </p>
-                                    </div>
-                                   
-                                   </li>
-                               </ul>
-                         </div>
+                        </div>
+                    </div>
               </el-col>
               <el-col :span='3' class="type_epares">
                     <div class="list_header">
@@ -84,9 +91,10 @@
         data(){
             return{
                 type:'0',
-                pn:'1',
+                pn:1,
                 blogList:[],
-                loading:false
+                loading:false,
+                loadingall:false
             }
         },
         methods:{
@@ -94,30 +102,68 @@
             this.loading = true
             let data = await this.$axios.get('/blog/type',{type,pn})
             if(data.code == 200){
-              this.blogList = data.data
+              console.log(data)
+              if(data.data.length == 0){
+                 this.loadingall = true
+                 this.remov()
+              }else{
+                  this.add()
+              }
+              this.blogList = [...this.blogList,...data.data]
               this.loading = false
             }else{
                 this.loading =false
-            }
-            
-           
+            }  
             },
+
         jumptodetail(id){
            this.$router.push(`/index/blogdetail?id=${id}`)
-       }
+                         }
+                    ,
+          getscroll(){
+           let scrollTop = document.documentElement.scrollTop||document.body.scrollTop
+           let Height = document.documentElement.clientHeight || document.body.clientHeight
+           let scrollHeight = document.documentElement.scrollHeight||document.body.scrollHeight;
+           if(scrollHeight-(scrollTop + Height ) < 5) 
+           {     
+               console.log('44444')
+               if(!this.loadingall){
+                   this.remov()
+                   this.pn +=1
+                   this.getblogs(this.type,this.pn)
+               }else{
+                  this.remov()
+               }
+           }
+           
+        },
+        add(){
+            window.addEventListener('DOMMouseScroll',this.getscroll) 
+        },
+        remov(){
+            window.removeEventListener('DOMMouseScroll',this.getscroll)
+        }
         },
         created() {
-            this.getblogs(this.type,this.pn)
+            this.getblogs(this.type,this.pn) 
+            this.add()
         },
+        beforeDestroy() {
+           this.remov()
+        },
+        
+        //获取div的scroll
+    
     }
 </script>
 <style scoped lang='scss'>
 .list_header{
     text-align: center;
-    font-family: '微软雅黑'
+    font-family: '微软雅黑';
+   
 }
 .bloglist_wraper{
-    margin: 20px auto;
+    margin: 0px auto;
 }
 .bloglist_card{
     font:15px '宋体';
@@ -204,6 +250,13 @@
     font-size: 12px;
     display: inline-block;
     margin: 0 10px;
+}
+.notdata{
+    font: 15px '宋体';
+    text-align: center;
+    height: 40px;
+    line-height: 40px;;
+
 }
 </style>
 

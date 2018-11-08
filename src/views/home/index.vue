@@ -33,8 +33,22 @@
                                <special></special>
                                <newarticle></newarticle>
                        </el-col>
-                       <el-col :span="4">
-
+                       <el-col :span="6" class="newblog_list">
+                            <div class='title_waraper'>
+                                  最新发布
+                            </div>
+                            <ul>
+                                <li class="blog_list_item" v-for="(blog,index) in blogList" :key="index">
+                                     <p>
+                                      {{blog.title}}
+                                    </p>  
+                                </li>
+                            </ul>
+                            <div class="blog_author">
+                                 <blog-author>
+                                     
+                                 </blog-author>
+                            </div>
                        </el-col>
                    </el-row>
             </div>
@@ -43,27 +57,38 @@
 <script>
 import special from '../../components/Newest'
 import newarticle from '../../components/Newarticle'
+import blogAuthor from '../../components/Blogperson'
     export default
     {
            name:'homeindex',
                data(){
             return{
-              bannerlist:[]
+              bannerlist:[],
+              blogList:[]
             }
         },
         components:{
                special,
-               newarticle
+               newarticle,
+               blogAuthor
         },
         methods:{
             getbanner(){
                 this.$axios.get('/banner').then(res=>{
                     this.bannerlist =res.data
                 })
+            },
+            async getNewBlog(){
+               let data =await this.$axios.get('/blog/new')
+               console.log(data)
+               if(data.code == 200){
+                   this.blogList = data.data
+               }
             }
         },
         created(){
             this.getbanner()
+            this.getNewBlog()
         }
 
     }
@@ -83,8 +108,7 @@ import newarticle from '../../components/Newarticle'
         margin: 0 auto;
         display: flex;
         justify-content: space-between;
-    }
-    
+    }  
 }
 .lunbo{
     width: 700px;
@@ -106,13 +130,11 @@ import newarticle from '../../components/Newarticle'
             margin-top: 8px;
             font: 13px "宋体", "Arial Narrow", HELVETICA;
             color: #89919A;
-
         }
     }
 }
 .personmessae{
        margin-top: 40px;
-
     ul{
         display: flex;
         justify-content: space-around;
@@ -123,6 +145,37 @@ import newarticle from '../../components/Newarticle'
         border-radius: 50%;
         box-shadow: 1px 2px 4px rgba(0,0,0,.2),inset 0 1px 1px rgba(0,0,0,.7);
         background-color: #3F3E3C;
+    }
+}
+.newblog_list{
+     margin-top: 30px;
+     background-color: #2A2A2A;
+     border-radius: 10px;
+     font-family: '宋体';
+     padding: 20px;
+     box-sizing: border-box;
+
+}
+.title_waraper{
+    text-align: center;
+    border-bottom: 2px dashed #333;
+    color: #ddd;
+    padding-bottom: 10px;
+
+}
+.blog_list_item{
+    margin-top: 10px;
+    p{
+        cursor: pointer;
+        height: 30px;
+        line-height: 30px;
+        font: 14px '宋体';
+        transition: all .2s linear;
+        color: #ddd;
+    }
+    p:hover{
+        font-size: 15px;
+        color: #ff0;
     }
 }
 </style>

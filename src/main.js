@@ -7,9 +7,12 @@ import ElementUI from 'element-ui';
 import 'normalize.css'
 import 'element-ui/lib/theme-chalk/index.css';
 import VueScroller from 'vue-scroller'
-Vue.use(VueScroller)
 import $axios from '../src/until/axios' 
 import store from '../vuex/store'
+import mavonEditor from 'mavon-editor'
+import 'mavon-editor/dist/css/index.css'
+Vue.use(mavonEditor)
+Vue.use(VueScroller)
 Vue.use(ElementUI);
 Vue.config.productionTip = false
 Vue.prototype.$axios = $axios

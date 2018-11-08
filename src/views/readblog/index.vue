@@ -59,17 +59,18 @@
                                      <div class="blog_corver">
                                             <img :src="article.corver" width="100%" alt="">
                                      </div>
-
                                      <div class="blog_content">
-                                               <vue-markdown
-                                                :source='article.contentext'
-                                               ></vue-markdown>
+                                      <mavon-editor 
+                                      class="mavon"
+                                      v-html="article.content" 
+                                      :subfield="false"
+                                      :toolbarsFlag="false" 
+                                      :boxShadow="false"
+                                      />
                                      </div>
                             </div>
-
                     </el-col>
-                </el-row>
-                
+                </el-row>       
         </el-card>
         <el-card class="comment_card"
             v-loading="loading2"
@@ -257,7 +258,7 @@ import VueMarkdown from 'vue-markdown'
             getcommeents(){
                 this.loading2 =true
                 this.$axios.get('/comment',{id:this.$route.query.id}).then(res=>{
-                    console.log(res)
+                    // console.log(res)
                    if(res.code ===200){
                          this.commentlist = res.data
                     this.loading2 = false
@@ -289,8 +290,7 @@ import VueMarkdown from 'vue-markdown'
         .add_comments{
           padding: 10px;
           border-radius: 6px;
-          box-shadow: 1px 2px 2px rgba($color: #585858, $alpha: 1.0);
-          
+          box-shadow: 1px 2px 2px rgba($color: #585858, $alpha: 1.0);     
           .who_add{
               display: flex;
               justify-content: space-between;
@@ -349,9 +349,6 @@ import VueMarkdown from 'vue-markdown'
        }
 
 }
-
-
-
 //博文信息
 .author_wraper{
     box-shadow: 2px 2px 4px rgba($color: #363836, $alpha: 1.0);
@@ -359,15 +356,14 @@ import VueMarkdown from 'vue-markdown'
     box-sizing: border-box;
 }
 .blog_content{
-    padding: 20px;
     box-sizing: border-box;
     border-radius: 20px;
     color: #FFF;
    /deep/ img{
-        width: 600px;;
+        width: auto;
         
     }
-    background-color: rgb(153, 140, 140);
+    // background-color: rgb(153, 140, 140);
 }
 .read_blog_wrpaer{
     margin: 0 auto;
@@ -375,8 +371,7 @@ import VueMarkdown from 'vue-markdown'
         margin-top: 20px;
         background-color: rgb(124, 119, 119);
         color:#ddd;
-        border: none;
-       
+        border: none;   
     }
 }
 .auth_message{
@@ -419,11 +414,6 @@ import VueMarkdown from 'vue-markdown'
       border-radius: 10px;
       text-align: center;;
   }
-  .blog_content{
-      margin-top: 20px;
-      font: 15px '宋体';
-      line-height: 1.5;
-  }
 }
 .followbtn{
     width: 100%;
@@ -433,6 +423,12 @@ import VueMarkdown from 'vue-markdown'
     background-color: rgb(160, 145, 145);
     color: #ddd;
     margin-top: 5px;
+}
+.mavon{
+    z-index: 100;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 20px;
 }
 </style>
 

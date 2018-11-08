@@ -2,7 +2,7 @@
     <div class="hot_blog_list">
          <ul >
              <li class="hot_blog_item" v-for="(blog,index) in hotBlogList" :key="index">
-                  <div class="blog_corver">
+                  <div class="blog_corver"  @click="jumptodetail(blog._id)">
                       <img :src="blog.corver" alt="" width="100%">
                        <div class="jintou">
 
@@ -17,7 +17,6 @@
                                       <span>
                                         粉丝：{{blog.author.fans.length}}
                                       </span>
-                                      |
                                       <span>
                                           博文：{{blog.author.blogs.length}}
                                       </span>
@@ -46,7 +45,11 @@
              let data =  await this.$axios.get('/blog/hot')
             //  console.log(data.data)
              this.hotBlogList = data.data
-            }
+            },
+               jumptodetail(id){
+                //    console.log('...')
+           this.$router.push(`/index/blogdetail?id=${id}`)
+       }
         }
         ,
         created() {

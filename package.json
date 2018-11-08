@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "element-ui": "^2.4.9",
+    "mavon-editor": "^2.6.17",
     "node-sass": "^4.9.4",
     "normalize.css": "^8.0.0",
     "nprogress": "^0.2.0",

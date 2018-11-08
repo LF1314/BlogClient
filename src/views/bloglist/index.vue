@@ -21,8 +21,6 @@
                 element-loading-text="拼命加载中..."
                 element-loading-spinner="el-icon-loading"
                 element-loading-background="rgba(0, 0, 0, 0.8)"
-              
-              
               >
                          <div class="list_header">
                              文章列表
@@ -38,7 +36,7 @@
                                           <img :src="blog.corver" alt="" width="100%">
                                     </div>
                                     <div class="blog_detail" v-if="blog.author">
-                                           <p class="blog_title">{{blog.title}}</p>
+                                           <p class="blog_title" @click="jumptodetail(blog._id)">{{blog.title}}</p>
                                             <p class="blog_other">
                                                 <span class="blog_type">
                                                     前端开发
@@ -103,7 +101,10 @@
             }
             
            
-            }
+            },
+        jumptodetail(id){
+           this.$router.push(`/index/blogdetail?id=${id}`)
+       }
         },
         created() {
             this.getblogs(this.type,this.pn)

@@ -127,6 +127,8 @@ import funcs from '../../until/funcs.js'
                              setTimeout(() => {
                                  this.$router.push('/index/home')
                              }, 500);
+                         }else{
+                             this.$message.info(res.msg)
                          }
                      })
                }else{
@@ -135,7 +137,7 @@ import funcs from '../../until/funcs.js'
 
              },
              //上传图片
-                   // 绑定@imgAdd event
+          // 绑定@imgAdd event
         $imgAdd(pos, $file){
             // 第一步.将图片上传到服务器.
            var formdata = new FormData();
@@ -148,8 +150,6 @@ import funcs from '../../until/funcs.js'
                headers: { 'Content-Type': 'multipart/form-data' },
            }).then((url) => {
                let ul = url.data.url
-            //    console.log(ul)
-               // 第二步.将返回的url替换到文本原位置![...](0) -> ![...](url)
                this.$refs.md.$img2Url(pos, ul);
            })
         }

@@ -62,8 +62,10 @@
 <style scoped lang='scss'>
 .hot_blog_list{
     margin-top: 20px;
+    border-top-right-radius: 20px;
     box-shadow: 2px 2px 3px rgba($color: #411527, $alpha: 1.0);
     padding-bottom: 60px;
+    overflow: hidden;
   .hot_blog_item{
       height: 50px;
       line-height: 50px;

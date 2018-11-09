@@ -118,7 +118,7 @@
 
         jumptodetail(id){
            this.$router.push(`/index/blogdetail?id=${id}`)
-                         }
+        }
                     ,
           getscroll(){
            let scrollTop = document.documentElement.scrollTop||document.body.scrollTop

@@ -96,21 +96,23 @@
 
 <style scoped lang ='scss'>
    .blog_list_wraepr{
-       width: 700px;
+       width: 100%;
        .pecial_card{
            background-color: rgb(59, 57, 57);
            border: none;
            color: #ddd;
            ul{
                display: flex;
-               justify-content: space-around;
+               justify-content: space-between;
                flex-wrap:wrap;
            }
-           ul li:nth-of-type(-n+3){
+           ul li{
                 box-shadow: 0 2px 2px rgba($color: #80780e, $alpha: 1.0);
            }
            li{
                list-style: none;
+               max-width: 275px;
+               min-width: 275px; 
            }
            .special_article_item{
               margin-top: 10px;

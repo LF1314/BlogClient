@@ -102,7 +102,7 @@
             this.loading = true
             let data = await this.$axios.get('/blog/type',{type,pn})
             if(data.code == 200){
-              console.log(data)
+             
               if(data.data.length == 0){
                  this.loadingall = true
                  this.remov()
@@ -126,7 +126,6 @@
            let scrollHeight = document.documentElement.scrollHeight||document.body.scrollHeight;
            if(scrollHeight-(scrollTop + Height ) < 5) 
            {     
-               console.log('44444')
                if(!this.loadingall){
                    this.remov()
                    this.pn +=1
@@ -164,12 +163,14 @@
 }
 .bloglist_wraper{
     margin: 0px auto;
+    min-height: 80vh;
 }
 .bloglist_card{
     font:15px '宋体';
     color: #fff;
     background-color: rgb(83, 80, 80);
     border: none;
+    min-height: 90vh;
 }
 .headerss{
     display: flex;
@@ -190,13 +191,16 @@
     margin-top: 20px;
     .blog_list_item{
         font-size: 0;
+        display: flex;
+        justify-content: space-between;
         margin-top: 20px;
         padding: 10px;
+        height:100px;
         box-sizing: border-box;
         .blog_img{
             display: inline-block;
             width: 60px;
-            height: 60px;
+            height: 100px;
             border-radius: 10px;
             overflow: hidden;
             img{

@@ -67,15 +67,17 @@
     padding-bottom: 60px;
     overflow: hidden;
   .hot_blog_item{
-      height: 50px;
-      line-height: 50px;
+      height: 80px;
+      line-height: 80px;
       padding: 10px 0 10px;
+      display: flex;
+      justify-content: space-around;
       font-size: 0;
       .blog_corver:hover div{
                     opacity: 1;
                 }
       .blog_corver{
-          height: 50px;
+          height: 70px;
           width: 50px;
           display: inline-block;
           position: relative;
@@ -86,17 +88,17 @@
           }
          .blogs_detail{
           position: absolute;
-          top: 0px;
+          top: 10px;
           left: 60px;
-          height:100px;
-          width: 100px; 
+          height:120px;
+          width: 120px; 
           border-radius: 10px;
           background-color: #fff;
           transition: all .3s linear;
           opacity: 0;  
           .autho_img{
-              height:40px;
-              width: 40px;
+              height:60px;
+              width: 60px;
               border-radius: 50%;
               overflow: hidden;;;
               margin: 0 auto;

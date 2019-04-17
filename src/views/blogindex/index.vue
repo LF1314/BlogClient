@@ -49,6 +49,10 @@
     background-size: cover;
     
 }
+.router_wraper{
+    width: 100%;
+    min-height: 90vh;
+}
 
 
 </style>

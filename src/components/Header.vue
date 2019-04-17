@@ -19,7 +19,7 @@
                             <router-link to="/index/chatroom">交流</router-link>
                         </el-tooltip>
                          <el-tooltip class="item" effect="dark" content="message" placement="bottom">
-                            <router-link to="/index/liuyan">留言</router-link>
+                            <router-link to="/index/exchange">留言</router-link>
                         </el-tooltip>
                          <el-tooltip class="item" effect="dark" content="blog" placement="bottom">
                             <el-button class="btss" @click="gowrite">写博文</el-button>

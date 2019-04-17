@@ -69,6 +69,7 @@ import VueMarkdown from 'vue-markdown'
           async getcategory(){
               this.loading = true
                 if(this.$store.state.bookurl){
+                    console.log(this.$store.state.bookurl)
                     let category =await this.$axios.get('/book/category',{href:this.$store.state.bookurl})
                    if(category.code ==200){
                        this.category = category.data
@@ -86,6 +87,7 @@ import VueMarkdown from 'vue-markdown'
            this.loading2 = true
            this.cont = con
            let url =  this.$store.state.bookurl +'/'+ con
+           
            let data =await  this.$axios.get('/book/content',{href:url})
            if(data.code == 200){
                try {
@@ -94,7 +96,7 @@ import VueMarkdown from 'vue-markdown'
                 this.content = str
                 this.loading2 =false
                } catch (error) {
-                   console.log(error)
+                  
                    this.loading2 =false
                }
               

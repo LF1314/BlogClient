@@ -114,7 +114,7 @@ import funcs from '../../until/funcs.js'
                    },
              //发布文章
              addblog(){
-                 console.log('...')
+                //  console.log('...')
                let data = +new Date()
                this.formdata.linuxtime = data
                this.formdata.creatime = funcs.changedata(data)

@@ -81,7 +81,7 @@
                      this.ishave =false
                   }
                   else if(res.code ==200){
-                      console.log(res)
+                    //   console.log(res)
                       this.fans = res.data
                   }
               })

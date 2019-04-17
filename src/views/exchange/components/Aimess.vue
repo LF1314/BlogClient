@@ -1,57 +1,40 @@
- //这里是交友聊天室页面
+ //这里是智能机器人
 
  <template>
-      <div class="chat_roome_wraper  w960">
+      <div class="chat_roome_wraper">
            <div class="bg">
            </div>
                 <div class="chat_roome_card">
                        <el-row class="chat_wrapersss">
-                           <el-col :span="8">
-                                    <div class="person_message">
-                                          <div class="author_img" >
-                                                <img v-if="$store.state.userinfo" width="100%" :src="$store.state.userinfo.avatar" alt="">
-                                          </div>
-                                          <div class="chat_group">
-                                               <div class="serach_wraper">
-                                                     <input type="text" placeholder="请输入查询的群组">
-                                               </div>
-                                    
-                                          </div>
-                                    </div>     
-                           </el-col>
-                           <el-col :span="16" class="message_content">
+                           <el-col  class="message_content">
                                  <div class="message_inner">
                                         <div class="message_content_header">
                                               <div>
                                                   {{mes}}
                                               </div>
                                               <div class="fenxaing_img">
-                                                  <img src="../../../static/img/fenxiang.png" alt="">
-                                                  <img src="../../../static/img/fenmenu.png" alt="">
+                                                  <img src="../../../../static/img/fenxiang.png" alt="">
+                                                  <img src="../../../../static/img/fenmenu.png" alt="">
                                               </div>
                                         </div>
                                         <div class="message_content_body">
-                                               <melist :to="mes" :message='obj'></melist>
+                                               <melist :to="mes" :message='messages'></melist>
                                         </div>
                                         <div class="message_contnet_footer" v-if="$store.state.userinfo">
-                                             <div class="footer_menu">
-                                                    <img src="../../../static/img/biaoqing.png" alt="">
-                                                    <img src="../../../static/img/bootmenu.png" alt="">
-                                             </div>
                                              <div class="footer_input">
-                                                    <el-input v-model="fordata.content" placeholder="代码敲了吗😭，涨工资了吗😍，来一起玩耍吧😁">
+                                                    <el-input v-model="fordata.content" placeholder="代码敲了吗😭,来一起玩耍吧😁" @keyup.native="senmeasage">
 
                                                     </el-input>
                                              </div>
                                              <div class="footer_send" @click="addchats">
-                                                   <img src="../../../static/img/send.png" alt="">
+                                                   <img src="../../../../static/img/send.png" alt="">
                                              </div>
                                         </div>
                                         <div v-else class="message_contnet_footer">
                                              <p>
                                                 你还没登录勒🙃，
                                                <el-button @click="jumtologin"> 去登陆</el-button>
-                                               和小伙伴一起玩耍吧🤨
+                                               和AI一起玩耍吧🤨
                                              </p>
                                         </div>
                                  </div>
@@ -62,7 +45,7 @@
       </div>
  </template>
  <script>
-  import melist from '../../components/Message'
+  import melist from '../../../components/Aimessage'
   import io  from 'socket.io-client'
 
      export default
@@ -75,7 +58,8 @@
                fordata:{
                    to:'',
                    content:''
-               }
+               },
+                 messages:[]
            }
          },
          components:{
@@ -85,14 +69,22 @@
              jumtologin(){
                  this.$router.push('/index/login')
              },
+            senmeasage(e){
+            //  console.log(e)
+             if(e.keyCode == 13){
+                 this.addchats()
+             }
+            },
            async addchats(){
                 this.fordata.to='word'
                  if(this.fordata.content){
-                   let data= await this.$axios.post('/chat/add',this.fordata)
-                    this.obj = data.data     
-                        //  this.socket.emit('chat','我发送消息了')
-                        //  this.socket.on('chat',(data)=>{
-                        //   })
+                   let data= await this.$axios.post('/chartAi',this.fordata)
+                   let aichart = {status:0,text:''}
+                   aichart.text = data.data.text
+
+                   let use = {status:1,text:this.fordata.content}
+                   this.messages.push(use)
+                   this.messages.push(aichart)    
                      this.fordata.content =''
                      if(data.code!=200){
                           this.$message.error('server error')
@@ -162,7 +154,7 @@
        }
 
  .bg{
-     background-image: url('../../../static/img/chatbg.jpg');
+     background-image: url('../../../../static/img/chatbg.jpg');
      background-size: cover;
      height: 450px;
      border: none;
@@ -173,7 +165,7 @@
  .chat_roome_card{
      position: absolute;
      top: 85px;
-     width:90%;
+     width:67%;
      margin: 0 auto;
      border-radius: 10px;
      height: 450px;

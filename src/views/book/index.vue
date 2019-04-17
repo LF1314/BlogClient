@@ -107,14 +107,15 @@
     border: none;
     color: #fff;
 }
+
 .book_urls{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     .bookitem{
-        width: 33%;
-        flex: 0 0 30%;
+        min-width: 40px;
+        max-width: 119px;
         text-align: center;
       .book_img{
           width: 60%;

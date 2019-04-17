@@ -6,22 +6,23 @@
             ref="scroll"
             >
              <ul ref="scollui">
-                 <li class="messae_item" v-for="(mes ,index) in meslist" :key="index">
+                 <li class="messae_item" v-for="(mes ,index) in message" :key="index">
                        <div class="clearfix">
-                            <div class="author_img" v-if="mes.from" 
-                            :class="userinfo._id == mes.from._id ? self : other">
+                            <div class="author_img"
+                            :class="mes.status == 1 ? self : other">
                                        <div class="wraeprs">
-                                            <img :src="mes.from.avatar" width="100%" alt="">
-                                            <span>
-                                                {{mes.from.username}} 
+                                            <img :src="userinfo.avatar" width="100%" alt="">
+                                            <span v-if="mes.status==0 ? false : true">
+                                                {{userinfo.username}} 
                                             </span>
+                                            <span v-else>傻狍子</span>
                                        </div>
                                        <div class="content clearfix">
                                             <div class="jiatou">
 
                                             </div>
                                             <div class="mes_content">
-                                                   {{mes.content}}
+                                                   {{mes.text}}
                                             </div>
                                        </div>
                             </div>
@@ -32,7 +33,6 @@
     </div>
 </template>
 <script>
-//  import Scroller from 'vue-scroller'
     export default
     {
         name:"messages",
@@ -41,19 +41,22 @@
                type:String
            },
            message:{
-               type:Object
+               type:Array
            }
         },
        watch:{
-          message(val){
-              if(val){
-              this.meslist.push(val)
-            //   console.log(this.meslist)
-              let height = this.$refs.scroll
-              let he =this.$refs.scollui.clientHeight+120  
-              this.$refs.scroll.scrollBy(0,he,false)
-              }  
+          message(){
+              let he =this.$refs.scollui.clientHeight+100  
+              setTimeout(() => {
+                        this.$refs.scroll.scrollTo(0,he,false)
+                    }, 10);  
           }
+       },
+       mounted(){
+          let he =this.$refs.scollui.clientHeight+100  
+              setTimeout(() => {
+                        this.$refs.scroll.scrollTo(0,he,false)
+                    }, 1000);  
        },
         data(){
             return{
@@ -65,18 +68,11 @@
             }
         },
         methods:{
-            //获取信息列表
-           async  getmeslist(){
-              let chatlist =await  this.$axios.get('/chat',{to:this.to,pn:this.pn})
-            //   console.log(chatlist)
-              this.meslist = chatlist.data
-            }
-            ,
             refresh(){        
             }
         },
         created(){
-            this.getmeslist()
+            
             if(!this.$store.state.userinfo){
                  this.userinfo.id = null
             }else{

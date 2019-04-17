@@ -74,7 +74,7 @@
 
 <style scoped lang='scss'>
 .new_article_list{
-    width: 700px;
+    width: 100%;
     margin-top: 20px;
 }
 .new_article_card{
@@ -125,6 +125,8 @@
                   }
                   .go_read{
                       cursor: pointer;
+                      min-width: 100px;
+                      max-height: 30px;
                       padding: 5px;
                       background-color: rgb(85, 38, 38);
                       border-radius: 5px;

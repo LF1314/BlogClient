@@ -2,38 +2,43 @@
        <div class="swiper_wraper">
             <div class="weiper_inner w960">
                      <div class="lunbo">
-                              <el-carousel height="260px">
+                              <el-carousel height="270px">
                                     <el-carousel-item v-for="(item,index) in bannerlist" :key="index">
-                                        <img :src="item.imgurl" alt="">
+                                        <img :src="item.imgurl" alt="" class="imgss">
                                     </el-carousel-item>
                              </el-carousel>
                      </div>
-                     <div class="blog_boss">
-                           <el-card class="mycard">
-                                  <h2>我的卡片</h2>
-                                  <p><span>网名：</span><span>慕圣</span></p>
-                                  <p><span>职业：</span><span>web前端工程师</span></p>
-                                  <p><span>phone：</span><span>null</span></p>
-                                  <p><span>email：</span><span>xundw@qq.com</span></p>
-                                  <div class="personmessae">
-                                        <ul>
-                                            <li class="per_item"></li>
-                                            <li class="per_item"></li>
-                                            <li class="per_item"></li>
-                                            <li class="per_item"></li>
-                                     
-                                        </ul>
-                                  </div>
-                           </el-card>
-                     </div>
+                     
             </div>
             <div class="body_inner w960">
-                   <el-row>
-                       <el-col :span="18" class="article_wrepr">
+                  
+                       <div  class="article_wrepr">
                                <special></special>
                                <newarticle></newarticle>
-                       </el-col>
-                       <el-col :span="6" class="newblog_list">
+                       </div>
+                       <div  class="newblog_list">
+
+                            <div class="blog_author">
+                                <div class="blog_boss">
+                                        <el-card class="mycard">
+                                                <h2>我的卡片</h2>
+                                                <p><span>网名：</span><span>慕圣</span></p>
+                                                <p><span>职业：</span><span>web前端工程师</span></p>
+                                                <p><span>phone：</span><span>null</span></p>
+                                                <p><span>email：</span><span>xundw@qq.com</span></p>
+                                                <div class="personmessae">
+                                                        <ul>
+                                                            <li class="per_item"></li>
+                                                            <li class="per_item"></li>
+                                                            <li class="per_item"></li>
+                                                            <li class="per_item"></li>
+                                                    
+                                                        </ul>
+                                                </div>
+                                        </el-card>
+                                    </div>
+                            </div>
+
                             <div class='title_waraper'>
                                   最新发布
                             </div>
@@ -44,13 +49,8 @@
                                     </p>  
                                 </li>
                             </ul>
-                            <div class="blog_author">
-                                 <blog-author>
-                                     
-                                 </blog-author>
-                            </div>
-                       </el-col>
-                   </el-row>
+                       </div>
+              
             </div>
       </div>
 </template>
@@ -80,7 +80,6 @@ import blogAuthor from '../../components/Blogperson'
             },
             async getNewBlog(){
                let data =await this.$axios.get('/blog/new')
-               console.log(data)
                if(data.code == 200){
                    this.blogList = data.data
                }
@@ -97,9 +96,11 @@ import blogAuthor from '../../components/Blogperson'
 <style scoped lang ='scss'>
 .body_inner{
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
     .article_wrepr{
         margin-top: 30px;
-     
+        width:75%;
     }
 }
 .swiper_wraper{
@@ -111,7 +112,7 @@ import blogAuthor from '../../components/Blogperson'
     }  
 }
 .lunbo{
-    width: 700px;
+    width:100%;
     border-radius: 6px;
     overflow: hidden;
 }
@@ -154,6 +155,7 @@ import blogAuthor from '../../components/Blogperson'
      font-family: '宋体';
      padding: 20px;
      box-sizing: border-box;
+     flex: 0 0 20%;
 
 }
 .title_waraper{
@@ -177,5 +179,9 @@ import blogAuthor from '../../components/Blogperson'
         font-size: 15px;
         color: #ff0;
     }
+}
+.imgss{
+    width: 100%;
+    height: 100%;
 }
 </style>

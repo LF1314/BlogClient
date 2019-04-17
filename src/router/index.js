@@ -73,7 +73,14 @@ const router =  new Router({
           path:'bloglist',
           name:'bloglist',
           component:()=>import('@views/bloglist')
+        },
+        {
+          path:'exchange',
+          name:'exchange',
+          meta:"留言",
+          component:()=>import('@views/exchange')
         }
+
       ]
     }
 

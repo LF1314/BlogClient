@@ -2,26 +2,26 @@
 <template>
      <div class="header_wraper">
             <div class="header_inner w960">
-                 <div class="logo">
+                <!-- <div class="logo">
                       <i>myblog</i>
-                 </div>
+                </div> -->
                  <div class="Heaader_navbar">
-                        <el-tooltip class="item" effect="dark" content="home" placement="bottom">
+                        <el-tooltip class="item" effect="dark" >
                             <router-link to="/index/home">首页</router-link>
                         </el-tooltip>
-                        <el-tooltip class="item" effect="dark" content="blog" placement="bottom">
+                        <el-tooltip class="item" effect="dark" >
                             <router-link to="/index/bloglist">博文</router-link>
                         </el-tooltip>
-                        <el-tooltip class="item" effect="dark" content="life" placement="bottom">
+                        <el-tooltip class="item" effect="dark" >
                             <router-link to='/index/book'>书屋</router-link>
                         </el-tooltip>
-                        <el-tooltip class="item" effect="dark" content="langue" placement="bottom">
+                        <el-tooltip class="item" effect="dark" >
                             <router-link to="/index/chatroom">交流</router-link>
                         </el-tooltip>
-                         <el-tooltip class="item" effect="dark" content="message" placement="bottom">
+                         <el-tooltip class="item" effect="dark" >
                             <router-link to="/index/exchange">留言</router-link>
                         </el-tooltip>
-                         <el-tooltip class="item" effect="dark" content="blog" placement="bottom">
+                         <el-tooltip class="item" effect="dark" >
                             <el-button class="btss" @click="gowrite">写博文</el-button>
                         </el-tooltip>
                  </div>
@@ -80,6 +80,9 @@
 .logo{
     font-size: 25px;
     color: #b8b3b3;
+
+    top: 0;
+    left: 0;
 }
  .header_wraper{
      position: relative;
@@ -98,14 +101,17 @@
      display: flex;
      text-align: center;
      margin: 0 auto;
+     height: 60px;
      justify-content: space-between;
  }
  .Heaader_navbar{
+
+     left: 100px;
      a{
          color: rgb(156, 129, 129);
      }
      .item{
-         margin: 0 10px;
+         margin: 0 5px;
      }
      .router-link-exact-active {
          color: rgb(160, 138, 138);

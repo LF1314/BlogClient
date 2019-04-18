@@ -113,7 +113,7 @@
           
           }
               .new_bog_footer{
-                  margin-left: 200px;
+                //   margin-left: 200px;
                   display: flex;
                   justify-content: space-between;
                   span{
@@ -126,7 +126,7 @@
                   .go_read{
                       cursor: pointer;
                       min-width: 100px;
-                      max-height: 30px;
+                      max-height: 20px;
                       padding: 5px;
                       background-color: rgb(85, 38, 38);
                       border-radius: 5px;

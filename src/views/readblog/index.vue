@@ -22,7 +22,7 @@
                                       <p>关注：{{author.follows.length}}</p>
                                       <p>博文：{{author.blogs.length}}</p>
                                   </div>
-                                  <div v-show="showgaunzu" >
+                                  <div v-show="showgaunzu" class="gzsss">
                                       <el-button v-if="state" class="followbtn" @click="addfollows">
                                           +关注
                                       </el-button>
@@ -380,8 +380,10 @@ import VueMarkdown from 'vue-markdown'
       padding:10px;
   }
   .authorimg{
-      width: 100px;
-      height: 100px;
+      max-width: 100px;
+      max-height: 100px;
+      min-width: 20px;
+      min-height:20px;
       border-radius: 50%;
       overflow: hidden;
       transition: all 20s ;
@@ -408,7 +410,7 @@ import VueMarkdown from 'vue-markdown'
       }
   }
   .blog_corver{
-      height: 300px;
+    //   height: 300px;
       margin-top: 10px;
       overflow: hidden;
       border-radius: 10px;
@@ -427,8 +429,12 @@ import VueMarkdown from 'vue-markdown'
 .mavon{
     z-index: 100;
     padding: 20px;
+    min-width: 190px;
     box-sizing: border-box;
     border-radius: 20px;
+}
+.gzsss{
+    min-width: 40px;
 }
 </style>
 

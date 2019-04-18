@@ -39,7 +39,7 @@
                                                     <img src="../../../static/img/bootmenu.png" alt="">
                                              </div>
                                              <div class="footer_input">
-                                                    <el-input v-model="fordata.content" placeholder="代码敲了吗😭，涨工资了吗😍，来一起玩耍吧😁">
+                                                    <el-input v-model="fordata.content" placeholder="代码敲了吗😭，涨工资了吗😍，来一起玩耍吧😁" @keyup.native="sendmess">
 
                                                     </el-input>
                                              </div>
@@ -82,6 +82,13 @@
                melist
          },
          methods:{
+           sendmess(e){
+
+          if(e.keyCode == 13){
+              this.addchats()
+          }
+           },
+
              jumtologin(){
                  this.$router.push('/index/login')
              },

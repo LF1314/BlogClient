@@ -49,11 +49,18 @@
               if(val){
               this.meslist.push(val)
             //   console.log(this.meslist)
-              let height = this.$refs.scroll
-              let he =this.$refs.scollui.clientHeight+120  
-              this.$refs.scroll.scrollBy(0,he,false)
+                   let he =this.$refs.scollui.clientHeight+100  
+              setTimeout(() => {
+                        this.$refs.scroll.scrollTo(0,he,false)
+                    }, 10);  
               }  
           }
+       },
+       mounted() {
+                 let he =this.$refs.scollui.clientHeight+100  
+              setTimeout(() => {
+                        this.$refs.scroll.scrollTo(0,he,false)
+                    }, 10);  
        },
         data(){
             return{
@@ -61,7 +68,8 @@
                meslist:[],
                self:"sell",
                other:'other',
-               userinfo:{}
+               userinfo:{},
+               timers:null
             }
         },
         methods:{
@@ -76,13 +84,22 @@
             }
         },
         created(){
-            this.getmeslist()
+            this.timers = setInterval(()=>{
+                this.getmeslist()
+                let he =this.$refs.scollui.clientHeight+100  
+                setTimeout(() => {
+                this.$refs.scroll.scrollTo(0,he,false)
+            }, 10);
+            },1000)
             if(!this.$store.state.userinfo){
                  this.userinfo.id = null
             }else{
                 this.userinfo = this.$store.state.userinfo
             }
         },
+        beforeDestroy() {
+            clearInterval(this.timers)
+        }
   
     }
 </script>

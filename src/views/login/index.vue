@@ -10,14 +10,14 @@
              >
                      <el-form-item 
                     >
-                       <input type="text" v-model="userdata.username" class="myinput" placeholder="username...">
+                       <input type="text" v-model="userdata.username" class="myinputdd" placeholder="username...">
                     </el-form-item>
                      <el-form-item
                      >
-                        <input type="password" v-model="userdata.password" class="myinput" placeholder="password...">
+                        <input type="password" v-model="userdata.password" class="myinputdd" placeholder="password...">
                     </el-form-item>
                        <el-form-item>
-                        <el-button class="btns" @click="handlelogin">
+                        <el-button class="btnsoo" @click="handlelogin">
                             <i>login_in</i>
                         </el-button>
                     </el-form-item>
@@ -94,7 +94,7 @@
     width: 400px;
     margin: 0 auto;
 }
-.myinput{
+.myinputdd{
        background-color: #332547;
        outline: none;
        border-radius: 6px;
@@ -106,7 +106,7 @@
        padding-left: 10px; 
 }
 input::-webkit-input-placeholder{ color:rgb(194, 154, 154)}
-.btns{
+.btnsoo{
     width: 290px;
     box-sizing: border-box;
     background-color: #332547;

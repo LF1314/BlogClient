@@ -103,7 +103,7 @@
            color: #ddd;
            ul{
                display: flex;
-               justify-content: space-between;
+               justify-content: space-around;
                flex-wrap:wrap;
            }
            ul li{
@@ -112,7 +112,7 @@
            li{
                list-style: none;
                max-width: 275px;
-               min-width: 275px; 
+               min-width: 203px; 
            }
            .special_article_item{
               margin-top: 10px;

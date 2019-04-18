@@ -101,12 +101,24 @@ import funcs from '../../until/funcs.js'
             this.getToken()
         }
     }
+    window.onresize=()=>{
+        let clientw = document.body.clientWidth
+        if(clientw < 580){
+            $('.login_wraper').css({width:'80%'})
+             $('.myinput').css({width:'180px'})
+            $('.btns').css({width:"190px"})
+        }else{
+            $('.login_wraper').css({width:"500px"})
+            $('.myinput').css({width:'280px'})
+            $('.btns').css({width:"290px"})
+        }
+    }
 </script>
 
 <style scoped lang='scss'>
   .login_wraper{
       color: #fff;
-      width: 500px;
+      width:500px;
       margin: 20px auto;
       background-color: rgb(138, 111, 111);
   }
@@ -149,12 +161,14 @@ import funcs from '../../until/funcs.js'
        height: 36px;
        color: #fff;
        border: none;
-       width: 280px;
+       max-width: 280px;
+       min-width: 180px;
        padding-left: 10px; 
 }
 input::-webkit-input-placeholder{ color:rgb(194, 154, 154)}
 .btns{
-    width: 280px;
+    max-width: 290px;
+    min-width: 190px;
     box-sizing: border-box;
     background-color: #332547;
     border: none;

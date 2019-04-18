@@ -164,7 +164,7 @@ import funcs from '../../until/funcs.js'
     height: 600px;
 }
 .writeblog_wraper{
-    width: 1000px;
+    width: 90%;
     margin: 0 auto;
 }
 .writeblogss{

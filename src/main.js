@@ -10,6 +10,8 @@ import VueScroller from 'vue-scroller'
 import $axios from '../src/until/axios' 
 import store from '../vuex/store'
 import mavonEditor from 'mavon-editor'
+import $ from 'jquery'
+
 import 'mavon-editor/dist/css/index.css'
 Vue.use(mavonEditor)
 Vue.use(VueScroller)

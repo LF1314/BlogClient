@@ -42,7 +42,7 @@
     padding-top: 70px;
     min-height: 100vh;
     z-index: inherit;
-    background-image: url('../../../static/img/bg.jpg');
+    // background-image: url('../../../static/img/bg.jpg');
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;

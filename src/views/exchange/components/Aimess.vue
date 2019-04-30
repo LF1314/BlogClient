@@ -10,7 +10,7 @@
                                  <div class="message_inner">
                                         <div class="message_content_header">
                                               <div>
-                                                  {{mes}}
+                                                  博客机器人
                                               </div>
                                               <div class="fenxaing_img">
                                                   <img src="../../../../static/img/fenxiang.png" alt="">
@@ -173,7 +173,7 @@
      }
  }
  .message_content{
-     height: 450px;
+     height: 600px;
      border-top-right-radius: 6px;
      border-bottom-right-radius: 6px;
      background-color: rgba($color: rgb(218, 207, 207), $alpha: .5);

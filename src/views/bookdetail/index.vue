@@ -23,7 +23,7 @@
                                :class="category.con == cont ? 'active':''"
                                @click="getcontent(category.con)"
                                >
-                                   <p>
+                                   <p class="booktiles">
                                        {{category.title}}
                                    </p>                                
                                </li>
@@ -83,7 +83,7 @@ import VueMarkdown from 'vue-markdown'
                 }
                
             },
-    async getcontent(con){
+          async getcontent(con){
            this.loading2 = true
            this.cont = con
            let url =  this.$store.state.bookurl +'/'+ con
@@ -136,6 +136,7 @@ import VueMarkdown from 'vue-markdown'
                font-size: 14px;
                cursor: pointer;;
                transition: font .2s linear;
+               overflow: hidden;
 
            }
            p:hover{

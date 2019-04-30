@@ -102,7 +102,7 @@
      text-align: center;
      margin: 0 auto;
      height: 60px;
-     justify-content: space-between;
+     justify-content: space-around;
  }
  .Heaader_navbar{
 

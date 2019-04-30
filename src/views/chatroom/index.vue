@@ -6,7 +6,7 @@
            </div>
                 <div class="chat_roome_card">
                        <el-row class="chat_wrapersss">
-                           <el-col :span="8">
+                           <el-col :span="8" id="ishow" >
                                     <div class="person_message">
                                           <div class="author_img" >
                                                 <img v-if="$store.state.userinfo" width="100%" :src="$store.state.userinfo.avatar" alt="">
@@ -15,7 +15,6 @@
                                                <div class="serach_wraper">
                                                      <input type="text" placeholder="请输入查询的群组">
                                                </div>
-                                    
                                           </div>
                                     </div>     
                            </el-col>
@@ -113,9 +112,29 @@
          created(){
         //  this.socket = io.connect('http://localhost:8060')
      
-         }
+         },
+         mounted() {
+                let sinwidth =  document.body.clientWidth
+                if(sinwidth < 500){
+                    $('#ishow').css({display:"none"})
+                    $('.message_content').css({width:'100%'})
+                }else{
+                    $('#ishow').show()
+                     $('.message_content').css({width:'66%'})
+                }
+         }, 
          
      }
+   window.onresize=()=>{
+        let sinwidth =  document.body.clientWidth
+        if(sinwidth < 500){
+            $('#ishow').css({display:"none"})
+        }else{
+            $('#ishow').show()
+            
+        }
+   }
+
  </script>
 
 <style scoped lang='scss'>
@@ -129,7 +148,7 @@
      .author_img{
          width: 70px;
          flex: 0 0 70px;
-         height: 450px;
+         height: 620px;
          padding: 10px;
          box-sizing: border-box;
          overflow: hidden;
@@ -171,7 +190,7 @@
  .bg{
      background-image: url('../../../static/img/chatbg.jpg');
      background-size: cover;
-     height: 450px;
+     height: 620px;
      border: none;
      filter: blur(10px);
      overflow: hidden; 
@@ -183,12 +202,13 @@
      width:90%;
      margin: 0 auto;
      border-radius: 10px;
-     height: 450px;
+     height: 620px;
      .person_message{  
+         height: 620px;
      }
  }
  .message_content{
-     height: 450px;
+     height: 620px;
      border-top-right-radius: 6px;
      border-bottom-right-radius: 6px;
      background-color: rgba($color: rgb(218, 207, 207), $alpha: .5);

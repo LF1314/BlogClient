@@ -83,8 +83,10 @@
 }
 .person_message{
     img{
-        height: 100px;
-        width: 100px;
+        max-height: 100px;
+        max-width: 100%;
+        min-height: 50px;
+        display: block;
         border-radius: 50%;
     }
 }
@@ -100,7 +102,7 @@
     justify-content: space-around;
     margin-top: 20px;
     .baritem{
-        height: 50px;
+        min-height: 50px;
         line-height: 50px;
         text-align: center;
         border-bottom: 1px solid rgb(131, 127, 127);

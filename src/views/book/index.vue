@@ -5,7 +5,7 @@
                  <el-col :span="6" class="book_category">
                        <el-card class="book_category_card">
                             <div slot="header">
-                                    热门书籍
+                              热门
                             </div>
                             <ul>
                                 <li  class="hot_book_item" v-for="(book,index) in hotlist" :key="index">

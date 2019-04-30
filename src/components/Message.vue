@@ -50,7 +50,7 @@
               this.meslist.push(val)
             //   console.log(this.meslist)
                    let he =this.$refs.scollui.clientHeight+100  
-              setTimeout(() => {
+                  setTimeout(() => {
                         this.$refs.scroll.scrollTo(0,he,false)
                     }, 10);  
               }  
@@ -58,7 +58,7 @@
        },
        mounted() {
                  let he =this.$refs.scollui.clientHeight+100  
-              setTimeout(() => {
+                  setTimeout(() => {
                         this.$refs.scroll.scrollTo(0,he,false)
                     }, 10);  
        },
@@ -68,6 +68,7 @@
                meslist:[],
                self:"sell",
                other:'other',
+               len:0,
                userinfo:{},
                timers:null
             }
@@ -78,6 +79,7 @@
               let chatlist =await  this.$axios.get('/chat',{to:this.to,pn:this.pn})
             //   console.log(chatlist)
               this.meslist = chatlist.data
+              this.len = this.meslist.length
             }
             ,
             refresh(){        

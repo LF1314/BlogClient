@@ -123,7 +123,7 @@ index/blogdetail
 
 
 
-[online](http://47.100.6.121:8060)
+[online](http://47.100.6.121:1996)
 
 [项目地址](https://github.com/LF1314/blog-client)
 

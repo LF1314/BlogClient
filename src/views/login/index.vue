@@ -17,7 +17,7 @@
                         <input type="password" v-model="userdata.password" class="myinputdd" placeholder="password...">
                     </el-form-item>
                        <el-form-item>
-                        <el-button class="btnsoo" @click="handlelogin">
+                        <el-button class="btnsoo" @click="handlelogin"  >
                             <i>login_in</i>
                         </el-button>
                     </el-form-item>
@@ -44,6 +44,13 @@
              }
             }
         },
+       mounted(){
+           window.addEventListener('keyup',(e)=>{
+               if(e.keyCode ==13){
+                   this.handlelogin()
+               }
+           })
+       },
         methods:{
             getsingup()
             {

@@ -79,6 +79,12 @@ const router =  new Router({
           name:'exchange',
           meta:"留言",
           component:()=>import('@views/exchange')
+        },
+        {
+          path:"screen",
+          name:"screen",
+          meta:'图表库',
+          component:()=>import('@views/screen')
         }
 
       ]

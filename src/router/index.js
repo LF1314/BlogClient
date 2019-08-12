@@ -85,6 +85,12 @@ const router =  new Router({
           name:"screen",
           meta:'图表库',
           component:()=>import('@views/screen')
+        },
+        {
+           path:'chartdetail',
+           name:"chartdetial",
+           meta:"图表详情",
+           component:()=>import('@views/chartdetail')
         }
 
       ]

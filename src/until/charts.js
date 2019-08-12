@@ -16,8 +16,9 @@ let echartCategory=[
     }
 ]
 const  echartFun ={
-
+    
     disEchart(chartlist){
+        echartCategory.map(item=>item.charts=[])
         chartlist.forEach(element => {
             switch (element.group) {
                 case 'pie':
@@ -35,7 +36,8 @@ const  echartFun ={
         });
         return echartCategory
      
-    }
+    },
+    props:['id', 'options', 'dataset', 'position', 'size', 'actions']
 }
 
 module.exports = echartFun

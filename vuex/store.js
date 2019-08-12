@@ -9,7 +9,8 @@ Vue.use(vuex)
 
 const state ={
     userinfo:null,
-    bookurl:''
+    bookurl:'',
+    nowChart:null
 }
 
 const mutations ={
@@ -18,6 +19,9 @@ const mutations ={
     },
     'CHANGEBOOKURL'(state,upload){
         state.bookurl = upload
+    },
+    'CHANGECHART'(state,upload){
+      state.nowChart = upload
     }
 }
 

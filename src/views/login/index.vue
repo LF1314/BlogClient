@@ -79,6 +79,9 @@
                     this.$message.info('用户名不能为空')
                 }
             }
+        },
+        beforeDestroy(){
+            window.removeEventListener('keyup')
         }
     }
 </script>

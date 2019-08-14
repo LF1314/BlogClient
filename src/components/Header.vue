@@ -40,7 +40,7 @@ export default {
         { name: "首页", value: "/index/home" },
         { name: "博文", value: "/index/bloglist" },
         { name: "书屋", value: "/index/book" },
-        { name: "交流", value: "/index/chartroom" },
+        { name: "交流", value: "/index/chatroom" },
         { name: "留言", value: "/index/exchange" },
         { name: "图表库", value: "/index/screen" }
       ]

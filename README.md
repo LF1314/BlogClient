@@ -2,6 +2,9 @@
 
 > BlogClient
 
+#### 新加功能图表库
+    预览编辑
+
 #### 主要功能
 
     文章的添加
@@ -24,6 +27,8 @@ vue+node.js+mongoose + express +
     vue-resource
     element-ui
     marked
+    vue-echarts
+    echarts
     
 
 ### 后端

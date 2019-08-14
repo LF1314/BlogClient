@@ -371,3 +371,13 @@ a{
 li{
   list-style: none;
 }
+
+
+.el-tabs--border-card {
+  background-color: #666 !important;
+  border: none !important
+}
+.el-tabs__header .is-top{
+  background: #666 !important;
+  border: none !important
+}

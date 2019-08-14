@@ -6,15 +6,18 @@
                  <div class="chart_waper" v-if="item.charts.length">
                      <div class="chartItem" v-for="(chartItem,ind) in item.charts"
                      :key="ind+item.charts.length"
-                     @click="gotoChartDetail(chartItem)"
+                    
                      >
-                         <h3 class="chart_title">
-                             {{chartItem.name}}
-                         </h3>
+                        <el-card :body-style="{ padding: '0px' }">
                          <img class="chart_img" :src="imgbase + chartItem.chart_cover" alt="">
-                         <p class="chart_author">
-                             {{chartItem.author}}
-                         </p>
+                          <div style="padding: 14px;">
+                            <span>{{chartItem.name}}</span>
+                            <div class="bottom clearfix">
+                              <time class="time">{{chartItem.author}}</time>
+                              <el-button type="text" class="button"  @click="gotoChartDetail(chartItem)" >详情</el-button>
+                            </div>
+                          </div>
+                        </el-card>
                      </div>
                  </div>    
                 </el-tab-pane>
@@ -58,7 +61,6 @@ import untils from '../../until/charts'
   justify-content space-between
   .chartItem
     flex 0 0 30%
-    cursor pointer
     .chart_title
       font-size 18px;
       font-weight normal 
@@ -73,4 +75,33 @@ import untils from '../../until/charts'
       text-align center
       display block
       margin 0 auto 
+.time {
+    font-size: 13px;
+    color: #999;
+  }
+  
+  .bottom {
+    margin-top: 13px;
+    line-height: 12px;
+  }
+
+  .button {
+    padding: 0;
+    float: right;
+  }
+
+  .image {
+    width: 100%;
+    display: block;
+  }
+
+  .clearfix:before,
+  .clearfix:after {
+      display: table;
+      content: "";
+  }
+  
+  .clearfix:after {
+      clear: both
+  }
 </style>

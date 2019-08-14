@@ -29,9 +29,9 @@
                     l: script_len, //长度，用于生成id用
                     z: get_attribute(script, "zIndex", -1), //z-index
                     o: get_attribute(script, "opacity", 0.8), //opacity
-                    c: get_attribute(script, "color", "6,14,3"), //color
+                    c: get_attribute(script, "color", "6,255,3"), //color
                     n: get_attribute(script, "count", 99) ,//count
-                    bg:get_attribute(script,'backgrounColor',"rgba(0,0,0,.3)")
+                    bg:get_attribute(script,'backgrounColor',"rgba(0,144,255,.3)")
                 };
             }
             //设置canvas的高宽
@@ -93,7 +93,7 @@
                 },
                 all_array;
             the_canvas.id = canvas_id;
-            the_canvas.style.cssText = "position:fixed;top:0;left:0;background-color:rgba(0,0,28,.5);z-index:" + config.z + ";opacity:" + config.o;
+            the_canvas.style.cssText = "position:fixed;top:0;left:0;background-color:rgba(20,68,105,.5);z-index:" + config.z + ";opacity:" + config.o;
             get_by_tagname("body")[0].appendChild(the_canvas);
             //初始化画布大小
             set_canvas_size();

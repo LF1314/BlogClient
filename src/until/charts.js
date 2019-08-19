@@ -13,6 +13,16 @@ let echartCategory=[
         name:'折线图',
         group:"line",
         charts:[]
+    },
+    {
+        name:"词云图",
+        group:'chartword',
+        charts:[]
+    },
+    {
+        name:"水形图",
+        group:'waterchart',
+        charts:[]
     }
 ]
 const  echartFun ={
@@ -29,6 +39,9 @@ const  echartFun ={
                     break;
                 case 'line':
                     echartCategory[2].charts.push(element)
+                    break;
+                case 'chartword':
+                    echartCategory[3].charts.push(element)
                     break;
                 default:
                     break;

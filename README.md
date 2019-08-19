@@ -29,6 +29,7 @@ vue+node.js+mongoose + express +
     marked
     vue-echarts
     echarts
+    vue-codemirror
     
 
 ### 后端

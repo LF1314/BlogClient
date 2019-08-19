@@ -30,6 +30,7 @@ vue+node.js+mongoose + express +
     vue-echarts
     echarts
     vue-codemirror
+    chart_wordcloud
     
 
 ### 后端

@@ -98,7 +98,8 @@
          created(){
         //  this.socket = io.connect('http://localhost:8060')
      
-         }
+         },
+    
          
      }
  </script>
